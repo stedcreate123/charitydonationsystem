@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito/static/Nunito-Regular.ttf");
+  font-weight: 500;
+}
+
+:root {
+  --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@layer base {
+  * {
+    font-family: "Nunito";
+  }
+
+  body {
+    @apply bg-gray-200;
+  }
+}
+
+@layer components {
+  .sidenavbar {
+    @apply w-[250px] fixed top-[74px]  -right-[100%]  h-[500px] bg-white transition-all duration-[0.5s] z-50 rounded-l-3xl border;
+  }
+
+  .show_sidnavbar {
+    @apply right-0;
+  }
+  .input-group {
+    @apply relative;
+  }
+
+  .input {
+    @apply px-5 py-2 bg-white rounded-md outline-none text-gray-900 border border-gray-200 w-full;
+  }
+
+  .placeholder {
+    @apply absolute top-[10px] left-[8px] text-sm px-1 text-gray-900/50 duration-300;
+  }
+
+  .input:focus + .placeholder,
+  .input:not(:placeholder-shown) + .placeholder {
+    @apply -top-[10px] bg-white rounded-full;
+  }
+
+  .error {
+    @apply text-red-400 text-xs font-semibold ml-3 capitalize;
+  }
+
+  .primary_button {
+    @apply flex  px-5 py-3  rounded-xl text-white uppercase text-sm items-center justify-center bg-indigo-500;
+  }
+
+  .modal-wrapper {
+    @apply fixed top-0 left-0 w-full h-full  grid place-items-center invisible  z-50 transition-all transform ease-in duration-300 scale-[0] bg-[#00000080] pt-32;
+  }
+
+  .modal-wrapper.show {
+    @apply visible z-50 scale-[1];
+  }
+
+  .modal {
+    @apply max-w-[650px] bg-white rounded-3xl overflow-clip relative h-fit;
+  }
+
+  /* Modifying the scroll bar */
+  ::-webkit-scrollbar {
+    width: 16px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #edf2f7;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 100vh;
+    border: 3px solid #edf2f7;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+  }
+
+  /* drop down */
+  .dropdown_content {
+    @apply absolute px-[2px] py-[10px] top-[calc(100%+5px)] right-0  bg-white shadow-md rounded-xl overflow-hidden border;
+  }
+  .dropdown_content {
+    transform-origin: top right;
+    transform: scale(0);
+    transition: transform 0.3s ease 0s;
+  }
+
+  .dropdown_content.active {
+    transform: scale(1);
+    transition: transform 0.5s var(--transition-cubic);
+  }
+}
+
+@layer utilities {
+  .square {
+    aspect-ratio: 1/1;
+  }
+
+  .rectangle {
+    aspect-ratio: 2/1;
+  }
+}
